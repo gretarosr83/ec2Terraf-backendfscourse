@@ -38,26 +38,34 @@ resource "aws_instance" "demo_instance" {
     ami = "${lookup(var.amis,var.region)}"
     instance_type = "t2.micro"
     key_name = aws_key_pair.key_pair.key_name
-    # key_name = "demoKeyPair"
+    //key_name = "demoKeyPair"
     # vpc_security_group_ids = ["sg-0d85898e4dbb0c7d2"]
 
     tags = {
       Name= "backend_fscourse"
     }
 
+  user_data = file("backend_server.sh")
 
-    provisioner "file" {
-      source = "backend_server.sh"
-      destination = "/tmp/backend_server.sh"
+  #   provisioner "file" {
+  #     source = "backend_server.sh"
+  #     destination = "/tmp/backend_server.sh"
 
-    }
+  #   }
 
-    provisioner "remote-exec" {
-        inline = [ 
-            "chmod +x /tmp/backend_server.sh", #permision of the execution to the file
-            "sudo /tmp/backend_server.sh" #command to execute the file
-         ]
-    }
+  #   provisioner "remote-exec" {
+  #       inline = [ 
+  #           "chmod +x /tmp/backend_server.sh", #permision of the execution to the file
+  #           "sudo /tmp/backend_server.sh" #command to execute the file
+  #        ]
+  #   }
+
+  # # SSH Configuration
+  #   connection {
+  #     host = "${aws_instance.demo_instance.public_ip}"
+  #     user = "admin"
+  #     private_key = "${file("${var.private_key_path}")}"
+  #   }
 
 }   
 
