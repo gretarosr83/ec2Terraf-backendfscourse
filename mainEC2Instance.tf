@@ -45,7 +45,7 @@ resource "aws_instance" "demo_instance" {
       Name= "backend_fscourse"
     }
 
-  user_data = file("backend_server.sh")
+  user_data = file(backend_server.sh)
 
   #   provisioner "file" {
   #     source = "backend_server.sh"
@@ -60,12 +60,12 @@ resource "aws_instance" "demo_instance" {
   #        ]
   #   }
 
-  # # SSH Configuration
-  #   connection {
-  #     host = "${aws_instance.demo_instance.public_ip}"
-  #     user = "admin"
-  #     private_key = "${file("${var.private_key_path}")}"
-  #   }
+  # SSH Configuration
+    # connection {
+    #   host = "${aws_instance.demo_instance.public_ip}"
+    #   user = "admin"
+    #   private_key = "${file("${var.key_name}")}"
+    # }
 
 }   
 
