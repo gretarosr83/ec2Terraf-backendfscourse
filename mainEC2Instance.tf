@@ -18,7 +18,7 @@ provider "aws" {
 
 resource "tls_private_key" "rsa_4096" {
     algorithm = "RSA"
-    rsa_bits = 4096
+    rsa_bits = 4096 
 }
 
 resource "aws_key_pair" "key_pair" {
@@ -64,7 +64,7 @@ resource "aws_instance" "demo_instance" {
     connection {
       host = "${aws_instance.demo_instance.public_ip}"
       user = "ec2-user"
-      private_key = "${file("${var.key_name}")}"
+      private_key = "${file("${var.private_key_path}")}"
     }
 
 }   
