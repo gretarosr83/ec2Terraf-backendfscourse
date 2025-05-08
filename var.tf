@@ -28,3 +28,7 @@ variable "egress_ports" {
 variable "key_name" {
   
 }
+
+variable "private_key_path" {
+  default = "gpg"
+}
