@@ -68,6 +68,12 @@ resource "aws_instance" "demo_instance" {
       private_key = "${file("${aws_key_pair.key_pair.key_name}")}"
     }
 
+    provisioner "local-exec"{
+        command = "echo pm2 startup > pm2_startup.tf"
+    }
+   
+   
+
 }   
 
 resource "aws_security_group" "react_sg" {

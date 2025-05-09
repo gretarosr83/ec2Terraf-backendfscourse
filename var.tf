@@ -29,6 +29,6 @@ variable "key_name" {
   
 }
 
-variable "private_key_path" {
-  default = "gpg"
-}
+# variable "private_key_path" {
+#   default = aws_key_pair.key_pair.key_name
+# }
