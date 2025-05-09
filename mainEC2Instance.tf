@@ -63,7 +63,7 @@ resource "aws_instance" "demo_instance" {
   # SSH Configuration
     connection {
       host = "${aws_instance.demo_instance.public_ip}"
-      user = "ec2-user"
+      user = "admin"
       private_key = "${file("${var.private_key_path}")}"
     }
 
